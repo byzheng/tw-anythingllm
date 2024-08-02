@@ -96,6 +96,13 @@ Anything LLM in tiddlywiki 5
                     inline: "nearest"
                 });
             };
+            var go_top = function () {
+                dom_container.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start",
+                    inline: "nearest"
+                });
+            };
             dom_submit.onclick = ask_question;
             dom_textarea.addEventListener("keypress", e => {
                 if (e.key === "Enter" && e.shiftKey) {
@@ -107,13 +114,24 @@ Anything LLM in tiddlywiki 5
             let dom_bottom = document.createElement("INPUT");
             dom_bottom.setAttribute("type", "button");
             dom_bottom.id = "tw-anything-llm-bottom";
+            dom_bottom.classList.add("tc-btn");
             dom_bottom.setAttribute("value", "Bottom");
             dom_bottom.onclick = go_bottom;
+            let dom_top = document.createElement("INPUT");
+            dom_top.setAttribute("type", "button");
+            dom_top.id = "tw-anything-llm-top";
+            dom_top.classList.add("tc-btn");
+            dom_top.setAttribute("value", "Top");
+            dom_top.onclick = go_top;
 
             let dom_chat_button = document.createElement("div");
+            dom_chat_button.appendChild(dom_top);
             dom_chat_button.appendChild(dom_bottom);
             dom_chat_button.appendChild(dom_submit);
             let dom_chat_tool = document.createElement("div");
+            let dom_loading = document.createElement("div");
+            dom_loading.classList.add("loading");
+            dom_chat_tool.appendChild(dom_loading);
             dom_chat_tool.appendChild(dom_textarea);
             dom_chat_tool.appendChild(dom_chat_button);
             dom_chat_tool.classList.add("sticky");
@@ -136,7 +154,7 @@ Anything LLM in tiddlywiki 5
                 let html_text = $tw.wiki.renderText("text/html", "text/markdown", chat.content);
                 dom_chat.innerHTML = html_text;
 
-                if (chat.sources !== undefined) {
+                if (chat.sources !== undefined && chat.sources.length > 0) {
                     let dom_sources = document.createElement('div');
                     dom_sources.classList.add("box");
                     dom_sources.classList.add("chat-sources");
@@ -221,6 +239,7 @@ Anything LLM in tiddlywiki 5
                     content: message
                 });
                 dom_textarea.disabled = true;
+                dom_loading.innerText = "Loading...";
                 go_bottom()
                 let resp;
                 if (thread == "default") {
@@ -235,6 +254,7 @@ Anything LLM in tiddlywiki 5
                 });
                 go_bottom()
                 dom_textarea.disabled = false;
+                dom_loading.innerText = "";
             }
 
         } catch (e) {

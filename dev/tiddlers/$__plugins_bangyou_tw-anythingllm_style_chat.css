@@ -16,6 +16,10 @@
     text-align: right;
 }
 
+.loading{
+   text-align: right;
+}
+
 .chat-assistant {
     background: #dff0ec;
 }
