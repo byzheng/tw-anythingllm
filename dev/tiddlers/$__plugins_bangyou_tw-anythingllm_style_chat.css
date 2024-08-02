@@ -1,0 +1,59 @@
+
+.box{
+    border-radius: 1.5em;
+    border: 1px solid #ccc;
+    padding: 1em 1em;
+    margin: 1em 0.2em;
+    transition: box-shadow ease-in .1s;
+}
+
+.chat-tool {
+    background: #ded8d5;
+}
+
+.chat-user {
+    background: #ccd6e3;
+    text-align: right;
+}
+
+.chat-assistant {
+    background: #dff0ec;
+}
+
+.chat-source {
+    margin: 0.25em 0.5em;
+}
+
+.chat-sources {
+    margin: 0.25em 0.1em;
+    background: #f0f0f0;
+}
+
+.chat-sources-text {
+    margin: 0.25em 0.1em;
+    padding: 0.25em 0.25em;
+    background: #dedede;
+}
+
+.sticky {
+    position: sticky;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    width: 100%;
+}
+
+#tw-anything-llm-textarea {
+   width:100%
+}
+
+#tw-anything-llm-submit {
+   position: relative;
+   float: right;
+}
+
+document_metadata {
+   display: block;
+   color: gray;
+   font-size: 0.85em
+}
