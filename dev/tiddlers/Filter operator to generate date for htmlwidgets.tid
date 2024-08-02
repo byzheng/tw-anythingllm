@@ -1,0 +1,11 @@
+created: 20240712025308827
+modified: 20240712030737194
+tags: 
+title: Filter operator to generate date for htmlwidgets
+type: text/vnd.tiddlywiki
+
+Assumption
+
+* A tiddler is a record with multiple fields
+* Tiddlers are a table with row as a tiddler/record, column as fields/values
+* Tiddlers are obtained from fileter operators
