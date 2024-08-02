@@ -1,18 +1,17 @@
 "use strict";
 
+function AnythingLLM(apikey, host = "http://127.0.0.1:3001") {
+    const this_apikey = apikey;
+    const this_host = host;
 
-function AnythingLLM(apikey, host = "http://127.0.0.1:3001")   {
-	const this_apikey = apikey;
-  const this_host = host;
-
-   var request = async function(endpoint = "", options = {}) {
+    var request = async function (endpoint = "", options = {}) {
         let url = new URL("/api/v1" + endpoint, this_host);
 
         let headers = {
             'Authorization': 'Bearer ' + this_apikey + '',
             'Content-type': 'application/json'
         };
-        
+
         options.headers = headers;
         console.log(url);
         console.log(options);
@@ -23,10 +22,9 @@ function AnythingLLM(apikey, host = "http://127.0.0.1:3001")   {
         const data = await response.json();
         return data;
     }
-		this.request = request;
-	
-	
-    var documents = async function() {
+    this.request = request;
+
+    var documents = async function () {
         const options = {
             method: 'GET'
         };
@@ -34,9 +32,35 @@ function AnythingLLM(apikey, host = "http://127.0.0.1:3001")   {
         console.log(res);
         return res;
     }
-		this.documents = documents;
-	
-		var chats = async function(workspace, thread) {
+    this.documents = documents;
+    // chats history for workspace default thread
+    var chats = async function (workspace) {
+        const options = {
+            method: 'GET'
+        };
+        let path = "/workspace/" + workspace + "/chats";
+        var res = await request(path, options);
+        return res;
+    }
+    this.chats = chats;
+    // new chat for workspace default thread
+    var chat = async function (workspace, message, mode = "chat") {
+        const options = {
+            method: 'POST',
+            body: JSON.stringify({
+                message: message,
+                mode: mode,
+                userId: 1
+            })
+        };
+        let path = "/workspace/" + workspace + "/chat";
+        var res = await request(path, options);
+        return res;
+    }
+    this.chat = chat;
+    
+    // for chat history by thread
+    var chatsThread = async function (workspace, thread) {
         const options = {
             method: 'GET'
         };
@@ -44,9 +68,10 @@ function AnythingLLM(apikey, host = "http://127.0.0.1:3001")   {
         var res = await request(path, options);
         return res;
     }
-		this.chats = chats;
-	
-    var chat = async function(workspace, thread, message, mode = "chat") {
+    this.chatsThread = chatsThread;
+    
+    // for new chat by thread
+    var chatThread = async function (workspace, thread, message, mode = "chat") {
         const options = {
             method: 'POST',
             body: JSON.stringify({
@@ -59,7 +84,7 @@ function AnythingLLM(apikey, host = "http://127.0.0.1:3001")   {
         var res = await request(path, options);
         return res;
     }
-		this.chat = chat;
+    this.chatThread = chatThread;
 }
 
 exports.AnythingLLM = AnythingLLM;
