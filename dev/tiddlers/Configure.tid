@@ -1,0 +1,10 @@
+created: 20240802095856248
+modified: 20240802100116203
+order: 0
+tags: doc Contents tutorial
+title: Configure
+type: text/vnd.tiddlywiki
+
+!! Configure
+
+Before usage, you can setup `apikey` for Anything LLM in this tiddler [[$:/config/anythingllm/apikey]] and `host` in [[$:/config/anythingllm/apikey]].

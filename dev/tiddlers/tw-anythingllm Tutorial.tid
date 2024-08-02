@@ -1,9 +1,9 @@
 created: 20180907045232431
-modified: 20240802093544734
+modified: 20240802100159116
 tags: start doc
 title: tw-anythingllm Tutorial
 type: text/vnd.tiddlywiki
 
-<<tabs tabsList:"[tag[tutorial]!tag[advanced]sort[order]]" default:"ChatWidget" class:"tc-vertical" template:"$:/tabs/tabTemplate" state:"$:/state/tab-tw-anythingllm-tutorial">>
+<<tabs tabsList:"[tag[tutorial]!tag[advanced]sort[order]]" default:"Configure" class:"tc-vertical" template:"$:/tabs/tabTemplate" state:"$:/state/tab-tw-anythingllm-tutorial">>
 
 
