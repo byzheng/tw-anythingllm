@@ -33,6 +33,18 @@ function AnythingLLM(apikey, host = "http://127.0.0.1:3001") {
         return res;
     }
     this.documents = documents;
+    
+    // workspaces
+    var workspaces = async function () {
+        const options = {
+            method: 'GET'
+        };
+        let path = "/workspaces";
+        var res = await request(path, options);
+        return res;
+    }
+    this.workspaces = workspaces;
+    
     // chats history for workspace default thread
     var chats = async function (workspace) {
         const options = {

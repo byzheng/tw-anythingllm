@@ -1,0 +1,24 @@
+created: 20240802140515203
+modified: 20240802140629993
+order: 10
+tags: doc Contents tutorial
+title: WorkspacesWidget
+type: text/vnd.tiddlywiki
+
+!! Workspaces Widget
+
+The `workspace` widget is to list all workspaces with Anything LLM.
+
+!! Syntax
+
+```
+<$workspaces />
+```
+
+
+!! Example
+
+
+<$macrocall $name="wikitext-example" 
+src="""<$workspaces />"""/>
+
