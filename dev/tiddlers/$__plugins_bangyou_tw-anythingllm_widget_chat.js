@@ -202,8 +202,15 @@ Anything LLM in tiddlywiki 5
                         // display text when click on distance
                         dom_dis.addEventListener("click", function (event) {
                             event.preventDefault();
-                            dom_sources_text.hidden = false;
+                            if (dom_sources_text.hidden === undefined || dom_sources_text.hidden === false) {
+                                dom_sources_text.hidden = true;
+                            } else {
+                                dom_sources_text.hidden = false;
+                            }
+                            //dom_sources_text.hidden = false;
                             dom_sources_text.innerHTML = sources[i].text;
+                            
+                            
                         });
 
                         // Add to child
