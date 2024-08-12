@@ -115,7 +115,7 @@ Anything LLM in tiddlywiki 5
             };
             dom_submit.onclick = ask_question;
             dom_textarea.addEventListener("keydown", e => {
-                if (e.key === "Enter" && e.ctrlKey) {
+                if (e.ctrlKey && e.key === "Enter") {
                     e.preventDefault();
                     ask_question();
                 }
