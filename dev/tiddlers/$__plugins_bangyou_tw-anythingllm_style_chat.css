@@ -13,7 +13,7 @@
 
 .chat-user {
     background: #ccd6e3;
-    text-align: right;
+    text-align: left;
     width: fit-content;
     margin-left: auto; 
     margin-right: 0;
@@ -51,7 +51,8 @@
 }
 
 #tw-anything-llm-textarea {
-   width:100%
+   width:100%;
+   min-height:50px;
 }
 
 #tw-anything-llm-submit {

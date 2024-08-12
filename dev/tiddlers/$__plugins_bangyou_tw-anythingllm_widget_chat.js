@@ -8,7 +8,17 @@ Anything LLM in tiddlywiki 5
     /*jslint node: true, browser: true */
     /*global $tw: false */
     "use strict";
-
+    function makeid(length) {
+        let result = '';
+        const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        const charactersLength = characters.length;
+        let counter = 0;
+        while (counter < length) {
+          result += characters.charAt(Math.floor(Math.random() * charactersLength));
+          counter += 1;
+        }
+        return result;
+    }
     if ($tw.browser) {
         var anythingllm = require("$:/plugins/bangyou/tw-anythingllm/api/anythingllm.js");
     }
@@ -104,11 +114,15 @@ Anything LLM in tiddlywiki 5
                 });
             };
             dom_submit.onclick = ask_question;
-            dom_textarea.addEventListener("keypress", e => {
-                if (e.key === "Enter" && e.shiftKey) {
+            dom_textarea.addEventListener("keydown", e => {
+                if (e.key === "Enter" && e.ctrlKey) {
                     e.preventDefault();
                     ask_question();
                 }
+            })
+            dom_textarea.addEventListener("input", e => {
+                dom_textarea.style.height = Math.max(dom_textarea.scrollHeight, 50) + "px";
+                go_bottom();
             })
 
             let dom_bottom = document.createElement("INPUT");
@@ -196,20 +210,27 @@ Anything LLM in tiddlywiki 5
                         // for distance
                         let dom_dis = document.createElement('a');
                         dom_dis.setAttribute("href", "#");
+                        dom_dis.dataset.source = title + makeid(5);
                         dom_dis.innerText = " (" +
                             Math.round(sources[i]._distance * 100) +
                             "%)";
                         // display text when click on distance
                         dom_dis.addEventListener("click", function (event) {
                             event.preventDefault();
-                            if (dom_sources_text.hidden === undefined || dom_sources_text.hidden === false) {
+                            let c_source = dom_sources_text.dataset.source;
+                            let n_source = dom_dis.dataset.source;
+                            if (c_source === undefined || 
+                                c_source !== n_source) {
+                                dom_sources_text.hidden = false;
+                            } else if ( dom_sources_text.hidden === undefined || 
+                                dom_sources_text.hidden === false) {
                                 dom_sources_text.hidden = true;
                             } else {
                                 dom_sources_text.hidden = false;
                             }
                             //dom_sources_text.hidden = false;
                             dom_sources_text.innerHTML = sources[i].text;
-                            
+                            dom_sources_text.dataset.source = dom_dis.dataset.source;
                             
                         });
 
@@ -246,7 +267,10 @@ Anything LLM in tiddlywiki 5
                     content: message
                 });
                 dom_textarea.disabled = true;
+                dom_textarea.style.height = (50) + "px";
                 dom_loading.innerText = "Loading...";
+                
+                
                 go_bottom()
                 let resp;
                 if (thread == "default") {
