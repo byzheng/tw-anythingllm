@@ -13,8 +13,6 @@ function AnythingLLM(apikey, host = "http://127.0.0.1:3001") {
         };
 
         options.headers = headers;
-        console.log(url);
-        console.log(options);
         const response = await fetch(url, options);
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
@@ -29,10 +27,20 @@ function AnythingLLM(apikey, host = "http://127.0.0.1:3001") {
             method: 'GET'
         };
         var res = await request('/documents', options);
-        console.log(res);
         return res;
     }
     this.documents = documents;
+    
+    
+    var document = async function (name) {
+        const options = {
+            method: 'GET'
+        };
+        var res = await request('/document/' + name, options);
+        return res;
+    }
+    this.document = document;
+    
     
     // workspaces
     var workspaces = async function () {

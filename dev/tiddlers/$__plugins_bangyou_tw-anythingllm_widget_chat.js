@@ -166,6 +166,7 @@ Anything LLM in tiddlywiki 5
                 dom_chat.classList.add("chat-" + chat.role);
                 //dom_chat.innerText = chat.content;
                 let html_text = $tw.wiki.renderText("text/html", "text/markdown", chat.content);
+                html_text = html_text.replaceAll("&amp;", "&");
                 dom_chat.innerHTML = html_text;
 
                 if (chat.sources !== undefined && chat.sources.length > 0) {
