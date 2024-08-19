@@ -1,7 +1,7 @@
 author: Bangyou Zheng
 created: 20240801213656241
 description: tw-anythingllm is a wrapper Anything LLM
-modified: 20240805004535089
+modified: 20240813105634577
 name: tw-anythingllm
 parent-plugin: $:/plugins/bangyou/tw-anythingllm
 plugin-draft: plugin
@@ -9,4 +9,4 @@ source: https://github.com/byzheng/tw-anythingllm
 tags: 
 title: $:/plugins/bangyou/tw-anythingllm
 type: application/json
-version: 0.0.3
+version: 0.1.3
