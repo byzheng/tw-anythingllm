@@ -1,0 +1,26 @@
+created: 20240911051439493
+modified: 20240911051645409
+order: 10
+tags: doc Contents tutorial
+title: WorkspaceWidget
+type: text/vnd.tiddlywiki
+
+!! Workspace Widget
+
+The `workspace` widget is to list all threads of a workspace with Anything LLM.
+
+!! Syntax
+
+```
+<$workspaces />
+```
+
+!! Content and attributes
+|!Attributes |!Type |!Description |
+|workspace |required|The `workspace` slug name in Anything LLM |
+
+
+!! Example
+
+<$macrocall $name="wikitext-example" 
+src="""<$workspace workspace="test"/>"""/>
