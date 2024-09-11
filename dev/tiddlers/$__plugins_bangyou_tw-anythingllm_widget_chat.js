@@ -14,8 +14,8 @@ Anything LLM in tiddlywiki 5
         const charactersLength = characters.length;
         let counter = 0;
         while (counter < length) {
-          result += characters.charAt(Math.floor(Math.random() * charactersLength));
-          counter += 1;
+            result += characters.charAt(Math.floor(Math.random() * charactersLength));
+            counter += 1;
         }
         return result;
     }
@@ -72,7 +72,7 @@ Anything LLM in tiddlywiki 5
         if (thread === "") {
             thread = 'default';
         }
-        
+
         try {
 
             // whole conatianer for LLM
@@ -156,7 +156,7 @@ Anything LLM in tiddlywiki 5
 
             parent.insertBefore(dom_container, nextSibling);
 
-            
+
 
             var llm = new anythingllm.AnythingLLM(apikey, host);
 
@@ -187,7 +187,7 @@ Anything LLM in tiddlywiki 5
                         }
                     });
                     sources = [...new Set(sources.map(i => JSON.stringify(Object.fromEntries(
-                                        Object.entries(i)))))].map(JSON.parse);
+                        Object.entries(i)))))].map(JSON.parse);
 
                     for (let i = 0; i < sources.length; i++) {
                         let dom_source = document.createElement('span');
@@ -220,10 +220,10 @@ Anything LLM in tiddlywiki 5
                             event.preventDefault();
                             let c_source = dom_sources_text.dataset.source;
                             let n_source = dom_dis.dataset.source;
-                            if (c_source === undefined || 
+                            if (c_source === undefined ||
                                 c_source !== n_source) {
                                 dom_sources_text.hidden = false;
-                            } else if ( dom_sources_text.hidden === undefined || 
+                            } else if (dom_sources_text.hidden === undefined ||
                                 dom_sources_text.hidden === false) {
                                 dom_sources_text.hidden = true;
                             } else {
@@ -232,7 +232,7 @@ Anything LLM in tiddlywiki 5
                             //dom_sources_text.hidden = false;
                             dom_sources_text.innerHTML = sources[i].text;
                             dom_sources_text.dataset.source = dom_dis.dataset.source;
-                            
+
                         });
 
                         // Add to child
@@ -253,8 +253,8 @@ Anything LLM in tiddlywiki 5
                 } else {
                     resp = await llm.chatsThread(workspace, thread);
                 }
-                
-                
+
+
                 for (let i = 0; i < resp.history.length; i++) {
                     render_chat(resp.history[i]);
                 }
@@ -270,8 +270,8 @@ Anything LLM in tiddlywiki 5
                 dom_textarea.disabled = true;
                 dom_textarea.style.height = (50) + "px";
                 dom_loading.innerText = "Loading...";
-                
-                
+
+
                 go_bottom()
                 let resp;
                 if (thread == "default") {
@@ -297,7 +297,7 @@ Anything LLM in tiddlywiki 5
     /*
     Selectively refreshes the widget if needed. Returns true if the widget or any of its children needed re-rendering
      */
-    MyWidget.prototype.refresh = function (changedTiddlers) {};
+    MyWidget.prototype.refresh = function (changedTiddlers) { };
 
     exports.chat = MyWidget;
 
