@@ -84,9 +84,9 @@ Anything LLM in tiddlywiki 5
                         let tid = $tw.wiki.getTiddler(thread_tid[0]);
                         text_tw += "* [[" +
                             thread_tid[0] + 
-                            "]]"; 
+                            "]]\n"; 
                     } else {
-                        text_tw += "* " + resp.workspace[0].threads[i].slug;
+                        text_tw += "* " + resp.workspace[0].threads[i].slug + "\n";
                     }
                     
                 }
