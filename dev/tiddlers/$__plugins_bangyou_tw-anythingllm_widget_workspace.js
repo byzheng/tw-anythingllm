@@ -90,6 +90,7 @@ Anything LLM in tiddlywiki 5
                     }
                     
                 }
+                resp = null;
                 let html_tw = $tw.wiki.renderText("text/html", 
                     "text/vnd.tiddlywiki", 
                     text_tw);
